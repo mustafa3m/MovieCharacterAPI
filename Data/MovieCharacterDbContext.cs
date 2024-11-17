@@ -44,12 +44,14 @@ namespace MovieCharacterAPI.Data
 
             modelBuilder.Entity<Movie>().HasData(
                 new Movie { Id = 1, Title = "Iron Man", Genre = "Action, Adventure", ReleaseYear = 2008, Director = "Jon Favreau", FranchiseId = 1 },
-                new Movie { Id = 2, Title = "The Fellowship of the Ring", Genre = "Fantasy, Adventure", ReleaseYear = 2001, Director = "Peter Jackson", FranchiseId = 2 }
+                new Movie { Id = 2, Title = "The Fellowship of the Ring", Genre = "Fantasy, Adventure", ReleaseYear = 2001, Director = "Peter Jackson", FranchiseId = 2 },
+                new Movie { Id = 3, Title = "The Two Towers", Genre = "Fantasy, Adventure", ReleaseYear = 2002, Director = "Peter Jackson", FranchiseId = 2 }
             );
 
             modelBuilder.Entity<Character>().HasData(
                 new Character { Id = 1, FullName = "Tony Stark", Alias = "Iron Man", Gender = "Male", Picture = "https://example.com/ironman.jpg" },
-                new Character { Id = 2, FullName = "Frodo Baggins", Gender = "Male", Picture = "https://example.com/frodo.jpg" }
+                new Character { Id = 2, FullName = "Frodo Baggins", Gender = "Male", Picture = "https://example.com/frodo.jpg" },  
+                new Character { Id = 3, FullName = "Aragorn", Gender = "Male", Picture = "https://example.com/aragorn.jpg" }
             );
         }
     }
