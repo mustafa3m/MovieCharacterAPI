@@ -17,7 +17,11 @@ public class FranchisesController : ControllerBase
         _mapper = mapper;
     }
 
-    // Get all franchises
+    
+    /// <summary>
+    /// Gets all franchises.
+    /// </summary>
+    /// <returns>A list of franchises.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ReadFranchiseDto>>> GetFranchises()
     {
@@ -25,7 +29,12 @@ public class FranchisesController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ReadFranchiseDto>>(franchises));
     }
 
-    // Get a specific franchise by ID
+   
+    /// <summary>
+    /// Gets a specific franchise by ID.
+    /// </summary>
+    /// <param name="id">The ID of the franchise.</param>
+    /// <returns>The requested franchise.</returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<ReadFranchiseDto>> GetFranchise(int id)
     {
@@ -37,7 +46,12 @@ public class FranchisesController : ControllerBase
         return Ok(_mapper.Map<ReadFranchiseDto>(franchise));
     }
 
-    // Create a new franchise
+    
+    /// <summary>
+    /// Creates a new franchise.
+    /// </summary>
+    /// <param name="createFranchiseDto">The franchise to create.</param>
+    /// <returns>The created franchise.</returns>
     [HttpPost]
     public async Task<ActionResult<ReadFranchiseDto>> CreateFranchise(CreateFranchiseDto createFranchiseDto)
     {
@@ -45,7 +59,13 @@ public class FranchisesController : ControllerBase
         return CreatedAtAction(nameof(GetFranchise), new { id = franchise.Id }, _mapper.Map<ReadFranchiseDto>(franchise));
     }
 
-    // Update an existing franchise
+   
+    /// <summary>
+    /// Updates an existing franchise.
+    /// </summary>
+    /// <param name="id">The ID of the franchise to update.</param>
+    /// <param name="updateFranchiseDto">The updated franchise information.</param>
+    /// <returns>No content.</returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateFranchise(int id, UpdateFranchiseDto updateFranchiseDto)
     {
@@ -63,7 +83,12 @@ public class FranchisesController : ControllerBase
         return NoContent();
     }
 
-    // Delete a franchise
+    
+    /// <summary>
+    /// Deletes a franchise.
+    /// </summary>
+    /// <param name="id">The ID of the franchise to delete.</param>
+    /// <returns>No content.</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteFranchise(int id)
     {

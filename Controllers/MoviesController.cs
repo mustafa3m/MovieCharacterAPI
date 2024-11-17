@@ -17,7 +17,11 @@ public class MoviesController : ControllerBase
         _mapper = mapper;
     }
 
-    // Get all movies
+    
+    /// <summary>
+    /// Gets all movies.
+    /// </summary>
+    /// <returns>A list of movies.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ReadMovieDto>>> GetMovies()
     {
@@ -25,7 +29,12 @@ public class MoviesController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ReadMovieDto>>(movies));
     }
 
-    // Get a specific movie by ID
+   
+    /// <summary>
+    /// Gets a specific movie by ID.
+    /// </summary>
+    /// <param name="id">The ID of the movie.</param>
+    /// <returns>The requested movie.</returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<ReadMovieDto>> GetMovie(int id)
     {
@@ -37,7 +46,12 @@ public class MoviesController : ControllerBase
         return Ok(_mapper.Map<ReadMovieDto>(movie));
     }
 
-    // Create a new movie
+   
+    /// <summary>
+    /// Creates a new movie.
+    /// </summary>
+    /// <param name="createMovieDto">The movie to create.</param>
+    /// <returns>The created movie.</returns>
     [HttpPost]
     public async Task<ActionResult<ReadMovieDto>> CreateMovie(CreateMovieDto createMovieDto)
     {
@@ -45,7 +59,13 @@ public class MoviesController : ControllerBase
         return CreatedAtAction(nameof(GetMovie), new { id = movie.Id }, _mapper.Map<ReadMovieDto>(movie));
     }
 
-    // Update an existing movie
+    
+    /// <summary>
+    /// Updates an existing movie.
+    /// </summary>
+    /// <param name="id">The ID of the movie to update.</param>
+    /// <param name="updateMovieDto">The updated movie information.</param>
+    /// <returns>No content.</returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateMovie(int id, UpdateMovieDto updateMovieDto)
     {
@@ -63,7 +83,12 @@ public class MoviesController : ControllerBase
         return NoContent();
     }
 
-    // Delete a movie
+    
+    /// <summary>
+    /// Deletes a movie.
+    /// </summary>
+    /// <param name="id">The ID of the movie to delete.</param>
+    /// <returns>No content.</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteMovie(int id)
     {

@@ -17,7 +17,10 @@ public class CharactersController : ControllerBase
         _mapper = mapper;
     }
 
-    // Get all characters
+    /// <summary>
+    /// Gets all the characters.
+    /// </summary>
+    /// <returns>A list of characters.</returns>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ReadCharacterDto>>> GetCharacters()
     {
@@ -25,7 +28,12 @@ public class CharactersController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ReadCharacterDto>>(characters));
     }
 
-    // Get a specific character by ID
+  
+    /// <summary>
+    /// Gets a specific character by ID.
+    /// </summary>
+    /// <param name="id">The ID of the character.</param>
+    /// <returns>The requested character.</returns>
     [HttpGet("{id}")]
     public async Task<ActionResult<ReadCharacterDto>> GetCharacter(int id)
     {
@@ -37,7 +45,12 @@ public class CharactersController : ControllerBase
         return Ok(_mapper.Map<ReadCharacterDto>(character));
     }
 
-    // Create a new character
+    
+    /// <summary>
+    /// Creates a new character.
+    /// </summary>
+    /// <param name="createCharacterDto">The character to create.</param>
+    /// <returns>The created character.</returns>
     [HttpPost]
     public async Task<ActionResult<ReadCharacterDto>> CreateCharacter(CreateCharacterDto createCharacterDto)
     {
@@ -45,7 +58,13 @@ public class CharactersController : ControllerBase
         return CreatedAtAction(nameof(GetCharacter), new { id = character.Id }, _mapper.Map<ReadCharacterDto>(character));
     }
 
-    // Update an existing character
+    
+    /// <summary>
+    /// Updates an existing character.
+    /// </summary>
+    /// <param name="id">The ID of the character to update.</param>
+    /// <param name="updateCharacterDto">The updated character information.</param>
+    /// <returns>No content.</returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateCharacter(int id, UpdateCharacterDto updateCharacterDto)
     {
@@ -63,7 +82,12 @@ public class CharactersController : ControllerBase
         return NoContent();
     }
 
-    // Delete a character
+    
+    /// <summary>
+    /// Deletes a character.
+    /// </summary>
+    /// <param name="id">The ID of the character to delete.</param>
+    /// <returns>No content.</returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCharacter(int id)
     {
