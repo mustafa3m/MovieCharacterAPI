@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
 
 namespace MovieCharacterAPI.Models
 {
@@ -21,7 +23,9 @@ namespace MovieCharacterAPI.Models
 
         // Director's name, max length of 100 characters
         [MaxLength(100)]
-        public string Director { get; set; }
+        
+        public string? Director { get; set; }
+      
 
         // URL to the movie poster, optional
         [Url]

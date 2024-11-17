@@ -11,7 +11,7 @@ namespace MovieCharacterAPI.Models
 
         // Name of the franchise, required and max length of 100 characters
         [Required, MaxLength(100)]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         // Description of the franchise, optional and max length of 500 characters
         [MaxLength(500)]

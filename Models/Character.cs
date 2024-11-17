@@ -18,7 +18,7 @@ namespace MovieCharacterAPI.Models
 
         // Gender of the character, required and max length of 10 characters
         [Required, MaxLength(10)]
-        public string Gender { get; set; }
+        public string? Gender { get; set; }
 
         // URL to the character's picture, optional
         [Url]

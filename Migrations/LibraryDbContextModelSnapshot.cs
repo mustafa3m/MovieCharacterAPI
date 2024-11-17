@@ -9,7 +9,7 @@ using MovieCharacterAPI.Data;
 
 namespace MovieCharacterAPI.Migrations
 {
-    [DbContext(typeof(LibraryDbContext))]
+    [DbContext(typeof(MovieCharacterDbContext))]
     partial class LibraryDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -95,7 +95,7 @@ namespace MovieCharacterAPI.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -109,13 +109,13 @@ namespace MovieCharacterAPI.Migrations
                         {
                             Id = 1,
                             Description = "Superhero movies.",
-                            Name = "Marvel Cinematic Universe"
+                            Title = "Marvel Cinematic Universe"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Fantasy movies based on Tolkien's books.",
-                            Name = "The Lord of the Rings"
+                            Title = "The Lord of the Rings"
                         });
                 });
 
@@ -128,7 +128,6 @@ namespace MovieCharacterAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Director")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

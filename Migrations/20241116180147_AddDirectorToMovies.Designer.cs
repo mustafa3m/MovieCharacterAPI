@@ -11,8 +11,8 @@ using MovieCharacterAPI.Data;
 namespace MovieCharacterAPI.Migrations
 {
     [DbContext(typeof(MovieCharacterDbContext))]
-    [Migration("20241106172119_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241116180147_AddDirectorToMovies")]
+    partial class AddDirectorToMovies
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

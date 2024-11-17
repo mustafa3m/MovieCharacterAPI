@@ -1,6 +1,7 @@
 using MovieCharacterAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using MovieCharacterAPI.Models;
+using MovieCharacterAPI.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,15 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // Dependency Injection for DbContext
-builder.Services.AddDbContext<LibraryDbContext>(options =>
+builder.Services.AddDbContext<MovieCharacterDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SecretConnection")));
 
 // Add AutoMapper for mapping models
-//builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddAutoMapper(typeof(MovieProfile).Assembly,
+                               typeof(CharacterProfile).Assembly,
+                               typeof(FranchiseProfile).Assembly);
 
 // Configure Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Dependency Injection for Services
+builder.Services.AddScoped<IMovieService, MovieService>();
+builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddScoped<IFranchiseService, FranchiseService>();
 
 var app = builder.Build();
 
@@ -41,5 +49,4 @@ app.UseCors(policyBuilder => policyBuilder
 app.MapControllers();
 
 app.Run();
-
 

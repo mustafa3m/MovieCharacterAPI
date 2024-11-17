@@ -10,7 +10,7 @@ using MovieCharacterAPI.Data;
 
 namespace MovieCharacterAPI.Migrations
 {
-    [DbContext(typeof(LibraryDbContext))]
+    [DbContext(typeof(MovieCharacterDbContext))]
     [Migration("20241106174101_UpdatedSchema")]
     partial class UpdatedSchema
     {

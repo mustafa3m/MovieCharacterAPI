@@ -11,8 +11,8 @@ using MovieCharacterAPI.Data;
 namespace MovieCharacterAPI.Migrations
 {
     [DbContext(typeof(MovieCharacterDbContext))]
-    [Migration("20241106172119_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241117124143_AddGenderToCharacter")]
+    partial class AddGenderToCharacter
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,7 +131,6 @@ namespace MovieCharacterAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Director")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

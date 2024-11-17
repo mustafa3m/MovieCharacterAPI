@@ -5,9 +5,9 @@ using System.Reflection.Emit;
 
 namespace MovieCharacterAPI.Data
 {
-    public class LibraryDbContext : DbContext
+    public class MovieCharacterDbContext : DbContext
     {
-        public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
+        public MovieCharacterDbContext(DbContextOptions<MovieCharacterDbContext> options) : base(options) { }
 
         // DbSet properties for each model
         public DbSet<Character> Characters { get; set; }
@@ -38,8 +38,8 @@ namespace MovieCharacterAPI.Data
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Franchise>().HasData(
-                new Franchise { Id = 1, Name = "Marvel Cinematic Universe", Description = "Superhero movies." },
-                new Franchise { Id = 2, Name = "The Lord of the Rings", Description = "Fantasy movies based on Tolkien's books." }
+                new Franchise { Id = 1, Title = "Marvel Cinematic Universe", Description = "Superhero movies." },
+                new Franchise { Id = 2, Title = "The Lord of the Rings", Description = "Fantasy movies based on Tolkien's books." }
             );
 
             modelBuilder.Entity<Movie>().HasData(
