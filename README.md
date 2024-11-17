@@ -1,4 +1,3 @@
-# MovieCharacterAPI
 
 # MovieCharacterAPI
 
@@ -11,8 +10,15 @@ This is a RESTful API for managing movies, characters, and franchises. The API s
 - Reporting endpoints to get all movies in a franchise, all characters in a movie, and all characters in a franchise
 - Documentation with Swagger
 - Clean code with services and repositories
+  
+
+Database Diagrams
+This repository includes a database relationship diagram, diagrame.png, which visualizes the structure and relationships within the database. These diagrams help in understanding how the tables are related to each other and provide a clear overview of the database schema.
+
+The diagram has been included in this repository for reference and to aid in database design and development.
 
 ## Endpoints
+
 
 ### Movies
 - GET /api/movies: Get all movies
@@ -52,12 +58,16 @@ This is a RESTful API for managing movies, characters, and franchises. The API s
 
 ### Character
 - Id (int): Unique identifier
-- Name (string): Name of the character
+- FullName (string): Character's full name, required and max length of 100 characters
+- Alias (string?): Alias of the character, optional and max length of 50 characters
+- Gender (string?): Gender of the character, required and max length of 10 characters
+- Picture (string?): URL to the character's picture, optional
 - Movies (ICollection<Movie>): Movies the character appears in
 
 ### Franchise
 - Id (int): Unique identifier
-- Name (string): Name of the franchise
+- Title (string): Name of the franchise, required and max length of 100 characters
+- Description (string?): Description of the franchise, optional and max length of 500 characters
 - Movies (ICollection<Movie>): Movies in the franchise
 
 ## DTOs
@@ -74,20 +84,13 @@ This is a RESTful API for managing movies, characters, and franchises. The API s
 1. Clone the repository:
    ```bash
    git clone https://github.com/mustafa3m/MovieCharacterAPI.git
-
-1 Navigate to the project directory:
-  cd MovieCharacterAPI
-2 Install dependencies :
-   dotnet restore
-3 Update the database :
-   database update
-
-
-4 Run the application :
-  dotnet run
+   ```
 
 Documentation
-API documentation is available via Swagger. Once the application is running, navigate to /swagger to view the API documentation.
+API documentation is available via Swagger. Once the application is running, navigate to /swagger to view the API documentation
+
+
+
 
 
 
