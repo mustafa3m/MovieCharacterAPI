@@ -17,25 +17,28 @@ public class MoviesController : ControllerBase
         _mapper = mapper;
     }
 
-    
     /// <summary>
     /// Gets all movies.
     /// </summary>
     /// <returns>A list of movies.</returns>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<IEnumerable<ReadMovieDto>>> GetMovies()
     {
         var movies = await _movieService.GetAllMoviesAsync();
         return Ok(_mapper.Map<IEnumerable<ReadMovieDto>>(movies));
     }
 
-   
     /// <summary>
     /// Gets a specific movie by ID.
     /// </summary>
     /// <param name="id">The ID of the movie.</param>
     /// <returns>The requested movie.</returns>
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ReadMovieDto>> GetMovie(int id)
     {
         var movie = await _movieService.GetMovieByIdAsync(id);
@@ -46,20 +49,21 @@ public class MoviesController : ControllerBase
         return Ok(_mapper.Map<ReadMovieDto>(movie));
     }
 
-   
     /// <summary>
     /// Creates a new movie.
     /// </summary>
     /// <param name="createMovieDto">The movie to create.</param>
     /// <returns>The created movie.</returns>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<ReadMovieDto>> CreateMovie(CreateMovieDto createMovieDto)
     {
         var movie = await _movieService.CreateMovieAsync(_mapper.Map<Movie>(createMovieDto));
         return CreatedAtAction(nameof(GetMovie), new { id = movie.Id }, _mapper.Map<ReadMovieDto>(movie));
     }
 
-    
     /// <summary>
     /// Updates an existing movie.
     /// </summary>
@@ -67,6 +71,9 @@ public class MoviesController : ControllerBase
     /// <param name="updateMovieDto">The updated movie information.</param>
     /// <returns>No content.</returns>
     [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateMovie(int id, UpdateMovieDto updateMovieDto)
     {
         if (id != updateMovieDto.Id)
@@ -83,13 +90,15 @@ public class MoviesController : ControllerBase
         return NoContent();
     }
 
-    
     /// <summary>
     /// Deletes a movie.
     /// </summary>
     /// <param name="id">The ID of the movie to delete.</param>
     /// <returns>No content.</returns>
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteMovie(int id)
     {
         var result = await _movieService.DeleteMovieAsync(id);
@@ -101,3 +110,5 @@ public class MoviesController : ControllerBase
         return NoContent();
     }
 }
+
+

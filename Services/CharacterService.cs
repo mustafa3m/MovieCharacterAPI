@@ -74,5 +74,11 @@ namespace MovieCharacterAPI.Services
         {
             return _context.Characters.Any(e => e.Id == id);
         }
+
+        // Check if a character exists
+        public async Task<bool> CharacterExistsAsync(int id)
+        {
+            return await _context.Characters.AnyAsync(e => e.Id == id);
+        }
     }
 }
